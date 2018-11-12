@@ -1,0 +1,92 @@
+apply plugin: 'com.android.application'
+
+android {
+    compileSdkVersion 26
+    defaultConfig {
+        applicationId "dhananjay.com.carzdemo"
+        minSdkVersion 15
+        targetSdkVersion 22
+        versionCode 1
+        versionName "1.0"
+        multiDexEnabled true
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+    }
+    dataBinding {
+        enabled = true
+    }
+    buildTypes {
+        release {
+
+
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+    packagingOptions {
+        exclude 'META-INF/DEPENDENCIES'
+    }
+    compileOptions {
+        targetCompatibility JavaVersion.VERSION_1_8
+        sourceCompatibility JavaVersion.VERSION_1_8
+    }
+    testOptions {
+        unitTests.returnDefaultValues = true
+    }
+    aaptOptions { cruncherEnabled = false }
+    lintOptions {
+        abortOnError false
+    }
+    dexOptions {
+        incremental true
+    }
+    buildToolsVersion '27.0.3'
+}
+repositories {
+    flatDir {
+        dirs 'libs'
+    }
+    maven { url "https://jitpack.io" }
+    mavenCentral()
+    flatDir {
+        dirs 'libs'
+    }
+}
+
+dependencies {
+    // File Dependencies
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    // Multidex
+    implementation 'com.android.support:multidex:1.0.3'
+    implementation 'com.google.android.gms:play-services-maps:16.0.0'
+    annotationProcessor 'com.android.databinding:compiler:2.3.3'
+
+    //noinspection GradleCompatible
+    implementation 'com.android.support:design:27.1.1'
+
+    // RxJava Dependencies (React Android)
+    implementation 'io.reactivex.rxjava2:rxandroid:2.0.2'
+    implementation 'io.reactivex.rxjava2:rxjava:2.1.9'
+
+    // Dagger Dependencies (Dependency Injection)
+    implementation 'com.google.dagger:dagger:2.14.1'
+    annotationProcessor 'com.google.dagger:dagger-compiler:2.14.1'
+    implementation 'com.google.dagger:dagger-android:2.14.1'
+    annotationProcessor 'com.google.dagger:dagger-android-processor:2.14.1'
+    implementation 'com.google.dagger:dagger-android-support:2.14.1'
+    annotationProcessor 'com.google.dagger:dagger-android-support:2.14.1'
+
+    //noinspection GradleDependency
+    implementation 'android.arch.persistence.room:rxjava2:1.0.0'
+    implementation 'android.arch.lifecycle:common-java8:1.1.1'
+    implementation 'cz.msebera.android:httpclient:4.3.6'
+    implementation 'com.loopj.android:android-async-http:1.4.9'
+    //noinspection GradleDependency
+    annotationProcessor "android.arch.persistence.room:compiler:1.0.0"
+    // Location Dependencies
+    implementation 'com.google.android.gms:play-services-location:15.0.1'
+  //Multidex
+    implementation 'com.android.support:multidex:1.0.3'
+    annotationProcessor 'com.android.databinding:compiler:3.1.2'
+
+    //
+
+}
